@@ -213,3 +213,8 @@ historiques=[]
 @app.get("/historiques")
 def get_historiques():
   return Historique_et_details_de_mes_commandes
+
+@app.get("/commandes/client/{client_id}")
+def historique_client(client_id: int):
+    historique = [c for c in commandes if c.client_id == client_id]
+    return historique if historique else {"message": "Aucune commande trouvée pour ce client ❌"}
